@@ -5,4 +5,5 @@ add_compile_options(-std=c++0x)
 subdirs(
 	getpid
 	forkprocs
+	zombie
 )
