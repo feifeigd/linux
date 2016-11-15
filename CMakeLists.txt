@@ -7,4 +7,5 @@ subdirs(
 	getpid
 	forkprocs
 	zombie
+	thread
 )
