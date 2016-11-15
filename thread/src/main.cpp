@@ -69,6 +69,7 @@ void* thread1_run(void* arg)
 		sleep(5);
 	}
 	g_stop = true;
+	pthread_cond_signal(&mqlock_ready);	// 通知线程2结束
 	return nullptr;
 }
 
