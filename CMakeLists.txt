@@ -8,4 +8,5 @@ subdirs(
 	forkprocs
 	zombie
 	thread
+	snmp_alarm
 )
