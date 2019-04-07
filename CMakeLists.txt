@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 subdirs(
 	getpid
+	"file"
 	forkprocs
 	zombie
 	thread
