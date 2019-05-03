@@ -10,11 +10,14 @@
 #define MAXFILE 65535
 
 volatile sig_atomic_t g_running = true;
+// 发送SIGTERM信号让守护进程结束
 void sigterm_handler(int arg){
     g_running = false;
 }
+
+// 实现收获进程
 int main(){
-    pid_t pc = fork();
+    pid_t pc = fork();	// 第一步
     if(pc < 0){
         printf("error fork\n");
         exit(1);
