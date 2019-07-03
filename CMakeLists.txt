@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 subdirs(
 	coroutine
 	getpid
+    net
 	process
 	"file"
 	forkprocs
