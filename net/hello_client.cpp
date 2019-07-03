@@ -1,3 +1,4 @@
+#include <auto_close_fd.h>
 #include <unistd.h> // read
 #include <arpa/inet.h>
 #include <sys/socket.h>
@@ -14,7 +15,7 @@ int main(int argc, char* argv[]){
         cerr << "Usage : " << argv[0] << " <IP> <port>" << endl;        
         exit(1);
     }
-    int sock = socket(PF_INET, SOCK_STREAM, 0);
+    auto_close_fd sock { socket(PF_INET, SOCK_STREAM, 0)};
     if(-1 == sock)
         error_handling("socket() error.");
     sockaddr_in serv_addr = {};
@@ -29,7 +30,6 @@ int main(int argc, char* argv[]){
         error_handling("read() error.");
 
     cout << "Message from server : " << message << endl;
-    close(sock);
 
     return 0;
 }
