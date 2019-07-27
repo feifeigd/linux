@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
 		socklen_t clnt_adr_sz = sizeof(clnt_adr);
 		int str_len = recvfrom(serv_sock, message, BUF_SIZE, 0, (sockaddr*)& clnt_adr, &clnt_adr_sz);
 		cout << "recv data:" << message << endl;
-		sendto(serv_sock, message, str_len, 0, (sockaddr*)& clnt_adr, &clnt_adr_sz);
+		sendto(serv_sock, message, str_len, 0, (sockaddr*)& clnt_adr, clnt_adr_sz);
 	}
 	close(serv_sock);
 	return 0;
