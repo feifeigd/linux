@@ -1,6 +1,7 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <iostream>
+#include <cstring>
 #include <string>
 using namespace std;
 
