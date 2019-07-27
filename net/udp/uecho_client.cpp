@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
 	{
 		cout << "Inert message(q to quit): ";
 		cin >> message;
-		if (!strcmp(message, "q\n") || !strcmp(message, "Q\n"))
+		if (!strcmp(message, "q") || !strcmp(message, "Q"))
 		{
 			break;
 		}
