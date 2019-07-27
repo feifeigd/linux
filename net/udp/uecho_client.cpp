@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
 		error_handling("socket() error");
 	}
 
-	sockaddr serv_adr{}, from_adr{};
+	sockaddr_in serv_adr{}, from_adr{};
 	serv_adr.sin_family = AF_INET;
 	serv_adr.sin_addr.s_addr = inet_addr(argv[1]);
 	serv_adr.sin_port = htons(atoi(argv[2]));
