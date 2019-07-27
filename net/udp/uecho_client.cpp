@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
 		cerr << "Usage: " << argv[0] << " <IP> <port>" << endl;
 		exit(1);
 	}
-	int sock = socket(PF_INET, SOCK_DRGAM, 0);
+	int sock = socket(PF_INET, SOCK_DGRAM, 0);
 	if (-1 == sock) {
 		error_handling("socket() error");
 	}
