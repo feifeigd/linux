@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
 		socklen_t adr_sz = sizeof(from_adr);
 		int str_len = recvfrom(sock, message, BUF_SIZE, 0, (sockaddr*)& from_adr, &adr_sz);
 		message[str_len] = 0;
-		cout << "Message from server: " << message;
+		cout << "Message from server: " << message << endl;
 	}
 	close(sock);
 	return 0;
