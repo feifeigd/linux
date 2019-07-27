@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
 	sockaddr_in serv_adr{}, clnt_adr{};
 	serv_adr.sin_family = AF_INET;
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
-	serv_addr.sin_port = htons(atoi(argv[1]));
+	serv_adr.sin_port = htons(atoi(argv[1]));
 
 	if (-1 == bind(serv_sock, (sockaddr*)& serv_adr, sizeof(serv_adr))) {
 		error_handling("bind() error.");
