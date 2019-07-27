@@ -1,4 +1,4 @@
-
+ï»¿
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
@@ -10,6 +10,8 @@ void error_handling(string const& msg) {
 	cerr << msg << endl;
 	exit(1);
 }
+
+#define BUF_SIZE 100
 
 int main(int argc, char* argv[]) {
 	if (argc != 2)
@@ -31,7 +33,9 @@ int main(int argc, char* argv[]) {
 		error_handling("bind() error.");
 	}
 
-	// ÔÝÊ±ÊÇ¸öËÀÑ­»·
+	char message[BUF_SIZE];
+
+	// æš‚æ—¶æ˜¯ä¸ªæ­»å¾ªçŽ¯
 	while (true) {
 		socklen_t clnt_adr_sz = sizeof(clnt_adr);
 		int str_len = recvfrom(serv_sock, message, BUF_SIZE, 0, (sockaddr*)& clnt_adr, &clnt_adr_sz);
