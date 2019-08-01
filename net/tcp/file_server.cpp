@@ -1,9 +1,14 @@
-
+#include <auto_close_fd.h>
 #include <unistd.h>	// write
 #include <arpa/inet.h>	// sockaddr_in
 #include <iostream>
 
 using namespace std;
+
+void error_handling(char const* msg) {
+	cerr << msg << endl;
+	exit(1);
+}
 
 int main(int argc, char* argv[]) {
 	if (2 != argc)
@@ -11,8 +16,12 @@ int main(int argc, char* argv[]) {
 		cerr << "Usage: " << argv[0] << " <port>" << endl;
 		exit(1);
 	}
-	FILE* fp = fopen("file_server.cpp", "rb");
-	int serv_sd = socket(PF_INET, SOCK_STREAM, 0);
+	FILE* fp = fopen("fu.txt", "rb");
+	if (!fp)
+	{
+		error_handling("open file failed");
+	}
+	auto_close_fd serv_sd{ socket(PF_INET, SOCK_STREAM, 0) };
 	
 	sockaddr_in serv_adr{}, clnt_adr{};
 	serv_adr.sin_family = AF_INET;
@@ -23,7 +32,7 @@ int main(int argc, char* argv[]) {
 	listen(serv_sd, 5);
 
 	socklen_t clnt_adr_sz = sizeof(clnt_adr);
-	int clnt_sd = accept(serv_sd, (sockaddr*)& clnt_adr, &clnt_adr_sz);
+	auto_close_fd clnt_sd{ accept(serv_sd, (sockaddr*)& clnt_adr, &clnt_adr_sz) };
 	char buf[BUFSIZ];
 	while (true)
 	{
@@ -40,7 +49,5 @@ int main(int argc, char* argv[]) {
 	buf[len] = 0;
 	cout << "Message from client: " << buf << endl;
 	fclose(fp);
-	close(clnt_sd);
-	close(serv_sd);
 	return 0;
 }
