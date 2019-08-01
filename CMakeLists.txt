@@ -8,6 +8,7 @@ include_directories(
 subdirs(
 	coroutine
 	getpid
+	ipc
     net
 	process
 	"file"
