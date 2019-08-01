@@ -1,0 +1,39 @@
+{
+  "version": "0.2.1",
+  "defaults": {},
+  "configurations": [
+    {
+      "type": "cppdbg",
+      "name": "uecho_con_client (net\\udp\\uecho_con_client)",
+      "project": "CMakeLists.txt",
+      "projectTarget": "uecho_con_client (net\\udp\\uecho_con_client)",
+      "cwd": "${debugInfo.defaultWorkingDirectory}",
+      "program": "${debugInfo.fullTargetPath}",
+      "args": ["127.0.0.1", 9999],
+      "MIMode": "gdb",
+      "externalConsole": true,
+      "remoteMachineName": "${debugInfo.remoteMachineName}",
+      "pipeTransport": {
+        "pipeProgram": "${debugInfo.shellexecPath}",
+        "pipeArgs": [
+          "/s",
+          "${debugInfo.remoteMachineId}",
+          "/p",
+          "${debugInfo.parentProcessId}",
+          "/c",
+          "${debuggerCommand}",
+          "--tty=${debugInfo.tty}"
+        ],
+        "debuggerPath": "/usr/bin/gdb"
+      },
+      "setupCommands": [
+        {
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "visualizerFile": "${debugInfo.linuxNatvisPath}",
+      "showDisplayString": true
+    }
+  ]
+}
