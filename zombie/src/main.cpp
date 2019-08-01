@@ -36,9 +36,9 @@ int main(){
 }
 
 //子进程退出的异步善后处理
-void sigchld_handler(int signo)
+void sigchld_handler(int signo)	
 {
-	if (SIGCHLD != signo)
+	if (SIGCHLD != signo)	// 子进程终止
 	{
 		return;
 	}
@@ -47,7 +47,12 @@ void sigchld_handler(int signo)
 	int status = 0;
 	do
 	{
-		pid = waitpid(-1, &status, WNOHANG);
+		pid = waitpid(-1, &status, WNOHANG);	// wait函数会阻塞，waitpid不阻塞
+		if (WIFEXITED(status))	// 子进程正常终止
+		{
+			cout << "Removed proc id: " << pid << "\n"
+				<< "Child send: " << WEXITSTATUS(status) << endl;	// 子进程的返回值
+		}
 		cout << "pid exit:" << pid << endl;
 	} while (pid > 0);
 }
